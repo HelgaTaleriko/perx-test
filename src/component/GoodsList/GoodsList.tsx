@@ -9,7 +9,6 @@ export const GoodsList = () => {
 
     const {status, error, items} = useAppSelector((state: RootState) => state.goods);
 
-    // Используйте тип AsyncThunkAction для fetchGoodsAsync
     useEffect(() => {
         dispatch(fetchGoodsAsync([]));
     }, [dispatch]);
