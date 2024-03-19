@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import startApp from './App';
+import App from './App';
 
-startApp({ dealers: ['id1', 'id2'] });
+App({ dealers: ['id1', 'id2'] });
 
 ReactDOM.render(
     <>
