@@ -17,9 +17,6 @@ export const API_BASE_URL = 'https://test-frontend.dev.int.perx.ru';
 // Initialize React Query
 const queryClient = new QueryClient();
 
-// Main app component
-
-
 // Entry point of the application
 const App = (options: any) => {
     // Fetch the list of dealers
