@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
-import {goodsSlice} from "./goods/slise";
+import {goodsSlice} from "./goods/slice";
 import {cartSlice} from "./cart/slice";
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
