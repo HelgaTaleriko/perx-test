@@ -4,6 +4,8 @@ import {RootState, useAppDispatch, useAppSelector} from "../../redux/store";
 import {fetchGoodsAsync} from "../../utils/fetchGoodsAsync";
 import {cartSlice} from "../../redux/cart/slice";
 import {Button} from "antd";
+import { Typography } from 'antd'
+const { Title } = Typography;
 
 
 export const GoodsList = () => {
@@ -34,13 +36,13 @@ export const GoodsList = () => {
 
     return (
         <>
-            <h2>Goods List</h2>
+            <Title level={1} className='goods-list__title'>Список товаров</Title>
             <div className='goods-list'>
                 {items.map((item: any) => (
                     <div className='goods-list__item' key={item.id}>
                         <img src={`${API_BASE_URL}/${item.image}`} alt={item.title}/>
                         <div className='goods-list__item__wrapper'>
-                            <h3>{item.name}</h3>
+                            <Title level={3}>{item.name}</Title>
                             <p>{item.price}$</p>
                             <div className='goods-list__item__button'>
                                 <Button onClick={() => handleAddToCart(item)}>
