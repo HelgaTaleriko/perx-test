@@ -15,17 +15,17 @@ export const Main = ({dealerIds}: { dealerIds: string[] }) => {
 
     return (
         <BrowserRouter>
-            <div>
-                <nav>
+            <div className='main'>
+                <header className='header'>
                     <ul>
                         <li>
-                            <Link to="/">Goods</Link>
+                            <Link className='link' to="/">Список товаров</Link>
                         </li>
                         <li>
-                            <Link to="/cart">Cart ({cartTotal.toFixed(2)}$)</Link>
+                            <Link className='link' to="/cart">Корзина ({cartTotal.toFixed(2)}$)</Link>
                         </li>
                     </ul>
-                </nav>
+                </header>
 
                 <Routes>
                     <Route path="/" element={<GoodsList/>}/>
