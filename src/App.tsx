@@ -13,11 +13,8 @@ import {store} from "./redux/store";
 export const API_BASE_URL = 'https://test-frontend.dev.int.perx.ru';
 
 
-
 // Initialize React Query
 const queryClient = new QueryClient();
-
-// Main app component
 
 
 // Entry point of the application
@@ -28,15 +25,12 @@ const App = (options: any) => {
             const filteredDealers = options && options.dealers ? dealers.filter((dealer: any) => options.dealers.includes(dealer)) : dealers;
             const dealerIds = filteredDealers.map((dealer: any) => dealer.id);
 
-            // Pre-fetch goods from the filtered dealers
-
-
             // Render the app
             ReactDOM.render(
                 <React.StrictMode>
                     <QueryClientProvider client={queryClient}>
                         <Provider store={store}>
-                                <Main dealerIds={dealerIds} />
+                            <Main dealerIds={dealerIds}/>
                         </Provider>
                     </QueryClientProvider>
                 </React.StrictMode>,

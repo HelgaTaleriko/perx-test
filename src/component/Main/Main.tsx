@@ -2,16 +2,16 @@ import React, {useEffect} from "react";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {GoodsList} from "../GoodsList/GoodsList";
 import {Cart} from "../Cart/Cart";
-import {useAppDispatch} from "../../redux/store";
+import {RootState, useAppDispatch, useAppSelector} from "../../redux/store";
 import {fetchGoodsAsync} from "../../utils/fetchGoodsAsync";
 
-export const Main = ({dealerIds}: { dealerIds: string[], }) => {
-
-
+export const Main = ({dealerIds}: { dealerIds: string[] }) => {
     const dispatch = useAppDispatch();
+    const cartTotal = useAppSelector((state: RootState) => state.cart.total);
+
     useEffect(() => {
         dispatch(fetchGoodsAsync(dealerIds));
-    }, [])
+    }, []);
 
     return (
         <BrowserRouter>
@@ -22,7 +22,7 @@ export const Main = ({dealerIds}: { dealerIds: string[], }) => {
                             <Link to="/">Goods</Link>
                         </li>
                         <li>
-                            <Link to="/cart">Cart</Link>
+                            <Link to="/cart">Cart ({cartTotal.toFixed(2)}$)</Link>
                         </li>
                     </ul>
                 </nav>
