@@ -1,8 +1,8 @@
-import {useDispatch, useSelector} from "react-redux";
 import React from "react";
-import {API_BASE_URL} from "../../App";
 import {RootState, useAppDispatch, useAppSelector} from "../../redux/store";
 import {cartSlice} from "../../redux/cart/slice";
+import Title from "antd/lib/typography/Title";
+import {Button} from "antd";
 
 export const Cart = () => {
     const dispatch = useAppDispatch();
@@ -17,26 +17,41 @@ export const Cart = () => {
     };
 
     return (
-        <div>
-            <h2>Cart</h2>
+        <div className='cart'>
+            <Title className='cart__title' level={1}>
+                Корзина
+            </Title>
             {items.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
-                <div>
-                    {items.map((item: any) => (
-                        <div key={item.id}>
-                            <img src={`${API_BASE_URL}/${item.image}`} alt={item.title}/>
-                            <h3>{item.title}</h3>
-                            <p>{item.price}$</p>
-                            <div>
-                                <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
-                                <span>{item.quantity}</span>
-                                <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-                            </div>
-                            <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-                        </div>
-                    ))}
-                    <p>Total: {total.toFixed(2)}</p>
+                <div className='cart__wrapper'>
+                    <ul>
+                        <li>
+                            {items.map((item: any) => (
+                                <div className='cart__item' key={item.id}>
+                                    <h3>{item.name}</h3>
+                                    <div className='cart__button'>
+                                        <p>{item.price}$</p>
+
+                                        <Button size={"small"}
+                                                onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+
+                                        </Button>
+
+                                        <span>{item.quantity}</span>
+                                        <Button size={"small"}
+                                                onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-
+                                        </Button>
+                                        <Button size={"small"} onClick={() => handleRemoveFromCart(item.id)}>
+                                            Х
+                                        </Button>
+
+
+                                    </div>
+                                </div>
+                            ))}
+                        </li>
+                    </ul>
+                    <p className='cart__total'>Итого: {total.toFixed(2)}$</p>
                 </div>
             )}
         </div>

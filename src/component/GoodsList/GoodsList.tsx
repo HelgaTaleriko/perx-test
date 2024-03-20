@@ -4,8 +4,9 @@ import {RootState, useAppDispatch, useAppSelector} from "../../redux/store";
 import {fetchGoodsAsync} from "../../utils/fetchGoodsAsync";
 import {cartSlice} from "../../redux/cart/slice";
 import {Button} from "antd";
-import { Typography } from 'antd'
-const { Title } = Typography;
+import {Typography} from 'antd'
+
+const {Title} = Typography;
 
 
 export const GoodsList = () => {
@@ -18,11 +19,11 @@ export const GoodsList = () => {
     }, [dispatch]);
 
     if (status === 'loading') {
-        return <div>Loading...</div>;
+        return <div className="loading">Loading...</div>;
     }
 
     if (status === 'failed') {
-        return <div>Error: {error}</div>;
+        return <div className="error">Error: {error}</div>;
     }
 
     const handleAddToCart = (item: any) => {
@@ -31,7 +32,7 @@ export const GoodsList = () => {
     const handleRemoveFromCart = (itemId: string) => {
         const cartItem = cartItems.find((item) => item.id === itemId);
         if (cartItem && cartItem.quantity > 0) {
-            dispatch(cartSlice.actions.updateQuantity({ id: itemId, quantity: cartItem.quantity - 1 }));
+            dispatch(cartSlice.actions.updateQuantity({id: itemId, quantity: cartItem.quantity - 1}));
         }
     };
 
@@ -42,24 +43,26 @@ export const GoodsList = () => {
 
     return (
         <>
-            <Title level={1} className='goods-list__title'>Список товаров</Title>
+            <Title level={3} className='goods-list__title'>Список товаров</Title>
             <div className='goods-list'>
                 {items.map((item: any) => (
                     <div className='goods-list__item' key={item.id}>
                         <img src={`${API_BASE_URL}/${item.image}`} alt={item.title}/>
                         <div className='goods-list__item__wrapper'>
-                            <Title level={3}>{item.name}</Title>
+                            <h4 className='goods-list__item__title' >{item.name}</h4>
                             <p>{item.price}$</p>
                             <div className='goods-list__item__button'>
-                                <Button onClick={() => handleAddToCart(item)}>
-                                    В корзину
+                                <Button size={"small"} onClick={() => handleRemoveFromCart(item.id)}>
+                                    -
                                 </Button>
-                                <Button onClick={() => handleRemoveFromCart(item.id)}>
-                                    Убрать один товар из корзины
+                                <span className='quantity-display'>
+                                 {getQuantityForItem(item.id)}
+                                </span>
+                                <Button size={"small"} onClick={() => handleAddToCart(item)}>
+                                    +
                                 </Button>
-                                <div className='quantity-display'>
-                                    Товаров в корзине: {getQuantityForItem(item.id)}
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
