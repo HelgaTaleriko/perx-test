@@ -6,6 +6,8 @@ import ReactDOM from "react-dom";
 import {Main} from "./component/Main/Main";
 import {fetchDealers} from "./utils/fetchDealers";
 import {store} from "./redux/store";
+import {PersistGate} from "redux-persist/integration/react";
+import {persistor} from "./redux/store";
 
 
 // Define API endpoints
@@ -29,7 +31,9 @@ const App = (options: any) => {
                 <React.StrictMode>
                     <QueryClientProvider client={queryClient}>
                         <Provider store={store}>
+                            <PersistGate loading={null} persistor={persistor}>
                             <Main dealerIds={dealerIds}/>
+                            </PersistGate>
                         </Provider>
                     </QueryClientProvider>
                 </React.StrictMode>,
