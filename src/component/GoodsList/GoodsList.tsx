@@ -28,6 +28,12 @@ export const GoodsList = () => {
     const handleAddToCart = (item: any) => {
         dispatch(cartSlice.actions.addToCart({...item, quantity: 1}));
     };
+    const handleRemoveFromCart = (itemId: string) => {
+        const cartItem = cartItems.find((item) => item.id === itemId);
+        if (cartItem && cartItem.quantity > 0) {
+            dispatch(cartSlice.actions.updateQuantity({ id: itemId, quantity: cartItem.quantity - 1 }));
+        }
+    };
 
     const getQuantityForItem = (itemId: string) => {
         const cartItem = cartItems.find((item) => item.id === itemId);
@@ -47,6 +53,9 @@ export const GoodsList = () => {
                             <div className='goods-list__item__button'>
                                 <Button onClick={() => handleAddToCart(item)}>
                                     В корзину
+                                </Button>
+                                <Button onClick={() => handleRemoveFromCart(item.id)}>
+                                    Убрать один товар из корзины
                                 </Button>
                                 <div className='quantity-display'>
                                     Товаров в корзине: {getQuantityForItem(item.id)}
