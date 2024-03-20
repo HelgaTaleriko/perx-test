@@ -1,46 +1,116 @@
-# Getting Started with Create React App
+# Тестовое задание для позиции React JS разработчик (frontend software engineer)
+## Веб-приложение "интернет-магазин"
+### Требования к функционалу
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение должно состоять из двух страниц: списка товаров и корзины.
 
-## Available Scripts
+В шапке должна отображаться ссылка на страницу "Корзина" со счетчиком количества заказанных товаров.
 
-In the project directory, you can run:
+Товар в списке должен включать изображение, заголовок, стоимость и возможность множественного добавления товара в корзину.
 
-### `npm start`
+На странице "Корзина" должен отображаться список добавленных товаров и их суммарная стоимость. Должна быть реализована возможность удалить товары из корзины (по одному или все сразу), а также возможность изменить количество заказанных наименований товара.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Все действия должны происходить без перезагрузки страницы.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+После перезагрузки страницы состояние приложения и содержимое корзины должно быть восстановлено.
 
-### `npm test`
+Приложение должно следовать требованиям юзабилити, должна быть предусмотрена адаптация под разные размеры экрана.
+Инициализация приложения
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Должна иметься возможность в коде инициализации приложения указать список идентификаторов дилеров, товары которых будут подгружаться в интернет-магазин. Если список дилеров не указан, должны подгружаться товары всех дилеров.
 
-### `npm run build`
+Приложение должно инициализироваться по требованию "внешнего" кода:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<html>
+  <head>
+    <script src="/path/to/app.js"></script>
+    <link href="/path/to/app.css">
+  </head>
+  <body>
+    <div id="app-root"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => { 
+        var app = new window.App();
+        if (app && app.start) {
+          app.start({ dealers: ['id1', 'id2'] });
+        }
+      });
+    </script>
+  </body>
+</html>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Стек технологий
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    React
+    Redux (Redux Toolkit, RTK Query)
+    TypeScript
+    ESLint
+    Webpack
+    Ant Design
 
-### `npm run eject`
+## Представление приложения
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Приложение должно быть представлено в виде ссылки на git репозиторий, а также общедоступной ссылки для просмотра работающего приложения или Docker контейнера.
+Описание API
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+###Получить список товаров всех дилеров
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+GET https://test-frontend.dev.int.perx.ru/api/goods/
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Пример ответа:
 
-## Learn More
+[
+  {
+    "name": "Python",
+    "price": 5.35,
+    "image": "/logo/python.png"
+  },
+  {
+    "name": "Go",
+    "price": 7.55,
+    "image": "/logo/go.png"
+  },
+  {
+    "name": "Node.js",
+    "price": 9.99,
+    "image": "/logo/node.png"
+  }
+]
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Получить список товаров определённых дилеров
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+GET https://test-frontend.dev.int.perx.ru/api/goods/?dealers=0c4aab30,86e64a33
+
+Пример ответа:
+
+[
+  {
+    "name": "Python",
+    "price": 5.35,
+    "image": "/logo/python.png"
+  },
+  {
+    "name": "Go",
+    "price": 7.55,
+    "image": "/logo/go.png"
+  }
+]
+
+### Получить список идентификаторов дилеров
+
+GET https://test-frontend.dev.int.perx.ru/api/dealers/
+
+Пример ответа:
+
+[
+  "0c4aab30",
+  "1efa7e46",
+  "86e64a33"
+]
+
+### Изображение товара
+
+GET https://test-frontend.dev.int.perx.ru/logo/node.png
+
+
+
