@@ -2,25 +2,30 @@
     text-align: center;
 }
 
-.main{
-    margin: 3vw 5vw ;
+.main {
+    margin: 3vw 5vw;
 }
-.header ul{
-    padding: 3vw 0 ;
+.header{
+    background-color: rgba(124, 250, 159, 0.13);
+}
+.header ul {
+    padding: 3vw 0;
     margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
 }
-.link{
+
+.link {
     text-decoration: none;
     color: black;
-    font-size: 2vw;
+    font-size: 1.5vw;
     font-weight: bold;
     transition: color 0.5s;
 }
-.link:hover{
+
+.link:hover {
     color: rgb(82, 170, 210);
 }
 
@@ -29,11 +34,12 @@
     flex-wrap: wrap;
     gap: 4vw;
     text-align: center;
-    justify-content: center;
-}
-.goods-list__title{
-    text-align: center;
+    justify-content: space-around;
 
+}
+
+.goods-list__title {
+    text-align: center;
 }
 
 .goods-list img {
@@ -47,19 +53,86 @@
     display: flex;
     flex-direction: column;
     transition: background-color 0.5s;
+
 }
-.goods-list__item img{
+
+.goods-list__item img {
+    width: 10vw;
     margin: auto;
 
 }
+
 .goods-list__item:hover {
-   background-color: rgba(124, 250, 159, 0.13);
+    background-color: rgba(124, 250, 159, 0.13);
 }
 
 .goods-list__item__wrapper {
+
     margin-bottom: 0;
     margin-top: auto;
 }
-.quantity-display{
-    margin: 2vw;
+
+.goods-list__item__wrapper p {
+    font-size: 1.5vw;
+    padding-bottom:1vw ;
+
+}
+.cart__title{
+    text-align: center;
+}
+.goods-list__item__button {
+    display: flex;
+    justify-content: center;
+}
+
+.quantity-display {
+    font-size: 1.7vw;
+    align-self: center;
+    padding: 0 1vw;
+    vertical-align: center;
+}
+
+.goods-list__item__title {
+    font-size: 2vw;
+}
+
+.cart__wrapper li {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.cart__item h3, p {
+    margin: 0;
+    vertical-align: center;
+}
+
+
+.cart__item {
+    display: flex;
+    gap: 2vw;
+    border: dimgray 0.1vw solid;
+    border-radius: 1vw;
+    padding: 1vw;
+
+}
+
+.cart__button {
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+    gap: 2vw;
+}
+.cart__button span{
+    vertical-align: center;
+
+}
+.cart__total{
+    text-align: right;
+}
+.loading,
+.error{
+    font-size: 5vw;
+    padding-top: 10vw;
+    text-align: center;
 }
