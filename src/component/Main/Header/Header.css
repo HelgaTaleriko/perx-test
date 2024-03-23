@@ -1,0 +1,25 @@
+.header {
+    background-color: rgba(221, 221, 221, 0.24);
+    text-transform: uppercase;
+}
+
+.header ul {
+    padding: 3vw 0;
+    margin: 0 5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2vw;
+    font-weight: bold;
+    transition: color 0.5s;
+}
+
+.link:hover {
+    color: rgb(82, 170, 210);
+}
