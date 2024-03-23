@@ -1,0 +1,41 @@
+.cart__title {
+    text-align: center;
+    font-family: "Circe Regular";
+}
+
+.cart__wrapper li {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.cart__item h3, p {
+    margin: 0;
+    vertical-align: center;
+}
+
+
+.cart__item {
+    display: flex;
+    gap: 2vw;
+    border: dimgray 0.1vw solid;
+    border-radius: 1vw;
+    padding: 1vw;
+
+}
+
+.cart__button {
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+    gap: 2vw;
+}
+
+.cart__button span {
+    vertical-align: center;
+
+}
+
+.cart__total {
+    text-align: right;
+}
